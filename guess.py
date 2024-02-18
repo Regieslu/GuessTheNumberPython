@@ -1,27 +1,29 @@
 import random  
 
-rand_number = random.randint(1, 100)
-attempts = 0
+play_again = ''
+while play_again != 'no':
+    rand_number = random.randint(1, 100)
+    attempts = 0
+    #Inicia el juego 
+    player_number = 0
+    while player_number != rand_number: #para permitir que el juego continue hasta que el jugador adivine el numero
+        player_number = input("Guess the number between 1 to 100: ")
+        player_number = int(player_number)
+        attempts += 1
+        if player_number < rand_number:
+            print("Too low! Try again")
+        elif player_number > rand_number:
+            print("Too high! Try again")
+    print(f"Congratulations, you win in {attempts} attempts!")
+    play_again = input('Do you want to play again? yes/no: ')
+    print(f'{play_again}')
+    while play_again != 'yes' and play_again !='no':
+        print(f'{play_again} is not a valid option')
+        play_again = input('Do you want to play again? yes/no: ')
 
-#Inicia el juego 
-while True: #para permitir que el juego continue hasta que el jugador adivine el numero
-    player_number = input("Guess the number between 1 to 100: ")
-    
-    # Con 'exit' sale del juego el jugador
-    if player_number.lower() == 'exit':
-        print("Quitting the game.")
-        break
-    
-    player_number = int(player_number)
-    attempts += 1
+    # haz un trim al play_again
 
-    if player_number < rand_number:
-        print("Too low! Try again")
-    elif player_number > rand_number:
-        print("Too high! Try again")
-    else:
-        print(f"Congratulations, you win in {attempts} attempts!")
-        break
+
 
 # Computer plays
 number = int(input("Number? "))
